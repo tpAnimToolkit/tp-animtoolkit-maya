@@ -1,0 +1,3 @@
+recursive-include tp/animtoolkit/maya/resources/* *.*
+include versioneer.py
+include tp/animtoolkit/maya/_version.py

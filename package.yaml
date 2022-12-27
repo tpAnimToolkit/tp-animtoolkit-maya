@@ -1,0 +1,12 @@
+name: 'tp-animtoolkit-maya'
+version: '1.0.0'
+required: True
+author: 'Tomas Poveda'
+authorEmail: 'tpovedatd@gmail.com'
+description: 'Maya libraries for tpAnimToolkit framework.'
+displayName: 'tpAnimToolkit Maya'
+environment:
+  PYTHONPATH:
+    - '{self}'
+commands:
+  - '{self}/tp/animtoolkit/startup/animtoolkitmaya.py'
