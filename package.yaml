@@ -8,5 +8,7 @@ displayName: 'tpAnimToolkit Maya'
 environment:
   PYTHONPATH:
     - '{self}'
+  TPDCC_ANIMTOOLBOX_PLUGIN_PATHS:
+    - '{self}/tp/animtoolkit/maya/tools/animtoolbox/plugins'
 commands:
   - '{self}/tp/animtoolkit/startup/animtoolkitmaya.py'

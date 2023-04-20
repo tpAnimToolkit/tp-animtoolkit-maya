@@ -1,4 +1,7 @@
+import maya.mel as mel
+
 from tp.core import log
+from tp.animtoolkit.maya.core import layereditor
 
 logger = log.tpLogger
 
@@ -11,7 +14,7 @@ def startup(package_manager):
 	:return: tpDccPackagesManager
 	"""
 
-	pass
+	layereditor.modify_anim_layer_editor()
 
 
 def shutdown(package_manager):

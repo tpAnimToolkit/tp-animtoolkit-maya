@@ -10,7 +10,7 @@ logger = log.tpLogger
 
 
 @dcc.undo_decorator()
-def change_rotation_order(nodes=None, new_rotate_order=api.kRotateOrder_XYZ, bake_every_frame=False, timeline=True):
+def change_rotation_order(nodes=None, new_rotate_order=api.consts.kRotateOrder_XYZ, bake_every_frame=False, timeline=True):
 	"""
 	Ses the rotation order for the given nodes.
 

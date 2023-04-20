@@ -1,45 +1,24 @@
+from tp.common.plugin import factory
 from tp.common.qt import api as qt
+
+from tp.animtoolkit.maya.tools.animtoolbox import abstract
 
 
 class AnimToolboxModel(qt.QObject):
 
-	rotationOrderChanged = qt.Signal(int)
-	selectionModeChanged = qt.Signal(int)
-
-	changeRotationOrderEvent = qt.Signal()
-	selectAnimatedNodesEvent = qt.Signal()
-	setKeyChannelBoxEvent = qt.Signal()
-	setKeyEvent = qt.Signal()
-	makeAnimHoldEvent = qt.Signal()
-	deleteKeyCurrentTimeEvent = qt.Signal()
-	keyToggleVisibilityEvent = qt.Signal()
-	resetAttributesEvent = qt.Signal()
-	toggleControlCurvesVisibilityEvent = qt.Signal()
-
 	def __init__(self):
-		super(AnimToolboxModel, self).__init__()
 
-		self._rotation_order = 0
-		self._selection_mode = 0
+		super().__init__()
 
-	# =================================================================================================================
-	# PROPERTIES
-	# =================================================================================================================
-
-	@property
-	def rotation_order(self):
-		return self._rotation_order
-
-	@rotation_order.setter
-	def rotation_order(self, index):
-		self._rotation_order = index
-		self.rotationOrderChanged.emit(self._rotation_order)
+		self._plugins_manager = factory.PluginFactory(abstract.AbstractToolPlugin, plugin_id='ID')
+		self._hotkeys_manager = factory.PluginFactory(abstract.AbstractHotkeyFactory, plugin_id='ID')
+		self._plugins_manager.register_paths_from_env_var('TPDCC_ANIMTOOLBOX_PLUGIN_PATHS')
+		self._hotkeys_manager.register_paths_from_env_var('TPDCC_ANIMTOOLBOX_PLUGIN_PATHS')
 
 	@property
-	def selection_mode(self):
-		return self._selection_mode
+	def plugins_manager(self) -> factory.PluginFactory:
+		return self._plugins_manager
 
-	@selection_mode.setter
-	def selection_mode(self, value):
-		self._selection_mode = value
-		self.selectionModeChanged.emit(self._selection_mode)
+	@property
+	def hotkeys_manager(self) -> factory.PluginFactory:
+		return self._hotkeys_manager
